@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.MultipartFilter;
 
 import javax.persistence.*;
+import java.io.InputStream;
 import java.util.List;
 
 @Entity
@@ -27,7 +28,6 @@ public class Candidate {
     private String photo;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
-
 
 
 

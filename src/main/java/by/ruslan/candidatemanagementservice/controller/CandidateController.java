@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Part;
+import java.io.IOException;
+
 
 @RestController
 @RequestMapping("/candidate")
@@ -31,10 +34,10 @@ public class CandidateController {
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<Candidate> create(@RequestPart("candidate") CreateCandidateDto dto,
                                             @RequestPart("photo") MultipartFile photo,
-                                            @RequestPart("cv") MultipartFile cv) {
+                                            @RequestPart("cv") MultipartFile cv) throws IOException {
         Candidate candidateToCandidate = candidateMapper.CreateCandidateToCAndidate(dto);
         Candidate candidate = candidateService.create(candidateToCandidate);
-        candidate.setPhoto(String.valueOf(photo));
+        candidate.setPhoto(candidateService.convertPhoto((Part) photo));
         candidate.setCv(String.valueOf(cv));
         return ResponseEntity.ok(candidate);
 
