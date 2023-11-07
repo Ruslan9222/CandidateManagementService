@@ -1,10 +1,8 @@
 package by.ruslan.candidatemanagementservice.controller;
 
-import by.ruslan.candidatemanagementservice.dto.CreateDirectionDto;
 import by.ruslan.candidatemanagementservice.dto.CreateTestDto;
 import by.ruslan.candidatemanagementservice.dto.UpdateDirectionDto;
 import by.ruslan.candidatemanagementservice.mapper.TestsMapper;
-import by.ruslan.candidatemanagementservice.model.Direction;
 import by.ruslan.candidatemanagementservice.model.Tests;
 import by.ruslan.candidatemanagementservice.repository.TestsRepository;
 import by.ruslan.candidatemanagementservice.service.TestsService;
@@ -36,11 +34,11 @@ public class TestController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<Tests> updateTestById(
+    public ResponseEntity.BodyBuilder updateTestById(
             @RequestBody UpdateDirectionDto updateTestDto,
             @PathVariable("id") long id) {
         testsService.updateTestWithCustomQuery(id, String.valueOf(updateTestDto));
-        return (ResponseEntity<Tests>) ResponseEntity.ok();
+        return ResponseEntity.ok();
     }
 
     @GetMapping("{testName}/all/{pages}")

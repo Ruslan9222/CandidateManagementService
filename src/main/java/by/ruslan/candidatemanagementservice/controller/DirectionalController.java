@@ -33,11 +33,11 @@ public class DirectionalController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<Direction> updateDirectionById(
+    public ResponseEntity.BodyBuilder updateDirectionById(
             @RequestBody UpdateDirectionDto updateDirectionDto,
             @PathVariable("id") long id) {
         directionService.updateDirectionWithCustomQuery(id, String.valueOf(updateDirectionDto));
-        return (ResponseEntity<Direction>) ResponseEntity.ok();
+        return ResponseEntity.ok();
     }
 
     @GetMapping("{directionName}/all/{pages}")
