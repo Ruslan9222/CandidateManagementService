@@ -11,11 +11,12 @@ public class TestsMapper {
         Tests createTests = new Tests();
         createTests.setTestName(createTestDto.getTestName());
         createTests.setTestDescription(createTestDto.getDescription());
+        createTests.setDirections(createTestDto.getDirections());
         return createTests;
     }
     public Tests updateTestDtoToTests(UpdateTestsDto updateTestsDto){
         Tests updateTests = new Tests();
-        updateTests.setTestDescription(updateTestsDto.getDescription());
+        updateTests.setTestDescription(updateTestsDto.getNameDescription());
         return updateTests;
     }
 }

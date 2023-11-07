@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 
 public class UpdateTestsDto {
-    private String description;
+    private String nameDescription;
 }

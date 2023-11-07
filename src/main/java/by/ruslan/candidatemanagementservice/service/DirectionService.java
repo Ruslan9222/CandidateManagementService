@@ -13,9 +13,10 @@ public class DirectionService {
     public Direction create(Direction direction) {
         return directionRepository.save(direction);
     }
-    public Direction updateDirectionById(Long id, Direction direction) {
-        directionRepository.updateDirectionById(id, direction);
-        return direction;
+
+    public void updateDirectionWithCustomQuery(long id, String description) {
+        directionRepository.updateDirectionByID(id, description);
     }
+
 
 }

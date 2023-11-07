@@ -32,19 +32,18 @@ public class DirectionalController {
 
     }
 
-    @PostMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Direction> updateDirectionById(
             @RequestBody UpdateDirectionDto updateDirectionDto,
             @PathVariable("id") long id) {
-        Direction updateDirection = directionMapper.updateDescriptionDtoToDirection(updateDirectionDto);
-        Direction direction = directionService.updateDirectionById(id, updateDirection);
-        return ResponseEntity.ok(direction);
+        directionService.updateDirectionWithCustomQuery(id, String.valueOf(updateDirectionDto));
+        return (ResponseEntity<Direction>) ResponseEntity.ok();
     }
 
     @GetMapping("{directionName}/all/{pages}")
-    public ResponseEntity <List<Direction>> findAllByDirectionName(
+    public ResponseEntity<List<Direction>> findAllByDirectionName(
             @PathVariable String directionName,
-            @PathVariable String pages){
+            @PathVariable String pages) {
         List<Direction> allByDirectionName = directionRepository.findAllByDirectionName(directionName,
                 PageRequest.of(Integer.parseInt(pages), 5, Sort.Direction.ASC, "directionName"));
         return ResponseEntity.ok(allByDirectionName);

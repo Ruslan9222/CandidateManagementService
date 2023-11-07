@@ -18,6 +18,6 @@ public class Tests {
     Long id;
     private String testName;
     private String testDescription;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerDirection")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
 }

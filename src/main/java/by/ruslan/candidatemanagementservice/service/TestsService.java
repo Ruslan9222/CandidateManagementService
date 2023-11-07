@@ -12,7 +12,7 @@ public class TestsService {
     public Tests create(Tests tests){
         return testsRepository.save(tests);
     }
-    public Tests updateTestsById(Long id,Tests tests){
-        return testsRepository.updateTestById(id,tests);
+    public void updateTestWithCustomQuery(long id, String testDescription) {
+        testsRepository.updateTestByID(id, testDescription);
     }
 }
