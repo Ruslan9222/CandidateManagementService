@@ -15,7 +15,7 @@ import java.util.List;
 public class Tests {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     private String testName;
     private String testDescription;
     @OneToMany(cascade = CascadeType.ALL)
