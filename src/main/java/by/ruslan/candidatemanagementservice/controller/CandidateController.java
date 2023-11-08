@@ -1,22 +1,23 @@
 package by.ruslan.candidatemanagementservice.controller;
 
 import by.ruslan.candidatemanagementservice.dto.CreateCandidateDto;
-import by.ruslan.candidatemanagementservice.dto.UpdateCandidateDto;
 import by.ruslan.candidatemanagementservice.mapper.CandidateMapper;
 import by.ruslan.candidatemanagementservice.model.Candidate;
+import by.ruslan.candidatemanagementservice.model.Direction;
 import by.ruslan.candidatemanagementservice.repository.CandidateRepository;
 import by.ruslan.candidatemanagementservice.service.CandidateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Part;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.List;
 
 
 @RestController
@@ -43,12 +44,18 @@ public class CandidateController {
         return ResponseEntity.ok(candidate);
 
     }
-    @PutMapping(value = "/candidate/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updatePost(@PathVariable("id") Long id, @RequestBody UpdateCandidateDto updateCandidateDto) {
 
+    //    @PutMapping(value = "/candidate/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public void updatePost(@PathVariable("id") Long id, @RequestBody UpdateCandidateDto updateCandidateDto) {
+//
+//    }
+    @GetMapping("{name}/all/{pages}")
+    public ResponseEntity<List<Candidate>> findAllByDirectionName(
+            @PathVariable String name,
+            @PathVariable String pages) {
+        List<Candidate> allByCandidateName = candidateRepository.findAllByName(name,
+                PageRequest.of(Integer.parseInt(pages), 20, Sort.Direction.ASC, "name"));
+        return ResponseEntity.ok(allByCandidateName);
     }
-
-
-
 }
