@@ -18,7 +18,7 @@ import java.util.List;
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     private String name;
     private String surname;
     private String patronymic;
@@ -28,7 +28,6 @@ public class Candidate {
     private String photo;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
-
 
 
 }
