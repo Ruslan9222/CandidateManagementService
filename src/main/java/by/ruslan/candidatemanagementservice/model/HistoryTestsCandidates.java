@@ -18,10 +18,8 @@ public class HistoryTestsCandidates {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = {CascadeType.MERGE})
-    @JoinTable(name = "db_history",
-            joinColumns = @JoinColumn(name = "db_candidateTest_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "db_history_id", referencedColumnName = "id"))
+    @OneToOne(cascade = CascadeType.ALL)
+
     private CandidateTest candidateTest;
     private LocalDate localDate;
     private String result;

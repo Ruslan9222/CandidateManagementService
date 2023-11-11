@@ -45,11 +45,6 @@ public class CandidateController {
 
     }
 
-    //    @PutMapping(value = "/candidate/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public void updatePost(@PathVariable("id") Long id, @RequestBody UpdateCandidateDto updateCandidateDto) {
-//
-//    }
     @GetMapping("{name}/all/{pages}")
     public ResponseEntity<List<Candidate>> findAllByDirectionName(
             @PathVariable String name,

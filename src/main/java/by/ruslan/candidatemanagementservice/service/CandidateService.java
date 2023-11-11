@@ -1,7 +1,6 @@
 package by.ruslan.candidatemanagementservice.service;
 
 import by.ruslan.candidatemanagementservice.dto.UpdateCandidateDto;
-import by.ruslan.candidatemanagementservice.mapper.CustomerMapper;
 import by.ruslan.candidatemanagementservice.model.Candidate;
 import by.ruslan.candidatemanagementservice.repository.CandidateRepository;
 import org.hibernate.Session;
