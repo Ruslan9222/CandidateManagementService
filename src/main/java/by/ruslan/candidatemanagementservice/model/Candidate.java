@@ -29,5 +29,4 @@ public class Candidate {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
 
-
 }

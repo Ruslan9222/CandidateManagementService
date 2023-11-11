@@ -26,6 +26,8 @@ public class CandidateTest {
     @OneToOne(cascade = CascadeType.ALL)
 
     private Tests tests;
+    private LocalDate localDate;
+    private String result;
 
 
 }

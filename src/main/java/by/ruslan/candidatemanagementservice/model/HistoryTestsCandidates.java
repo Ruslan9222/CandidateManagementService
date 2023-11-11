@@ -21,6 +21,5 @@ public class HistoryTestsCandidates {
     @OneToOne(cascade = CascadeType.ALL)
 
     private CandidateTest candidateTest;
-    private LocalDate localDate;
-    private String result;
+
 }
