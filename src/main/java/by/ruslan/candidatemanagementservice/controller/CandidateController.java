@@ -1,6 +1,7 @@
 package by.ruslan.candidatemanagementservice.controller;
 
 import by.ruslan.candidatemanagementservice.dto.CreateCandidateDto;
+import by.ruslan.candidatemanagementservice.dto.UpdateCandidateDto;
 import by.ruslan.candidatemanagementservice.mapper.CandidateMapper;
 import by.ruslan.candidatemanagementservice.model.Candidate;
 import by.ruslan.candidatemanagementservice.model.Direction;
@@ -41,6 +42,17 @@ public class CandidateController {
         Candidate candidate = candidateService.create(candidateToCandidate);
         candidate.setPhoto(candidateService.convertPhoto((Part) photo));
         candidate.setCv(String.valueOf(cv));
+        return ResponseEntity.ok(candidate);
+
+    }
+    @PutMapping ("/updateCandidate")
+    public ResponseEntity<Candidate> updateCandidate(@RequestPart("updateCandidate") UpdateCandidateDto dto,
+                                            @RequestPart("updatePhoto") MultipartFile updatePhoto,
+                                            @RequestPart("updateCV") MultipartFile updateCV) throws IOException {
+        Candidate updateCandidateToCandidate = candidateMapper.updateCandidateToCandidate(dto);
+        Candidate candidate = candidateService.updateCandidate(updateCandidateToCandidate);
+        candidate.setPhoto(candidateService.convertPhoto((Part) updatePhoto));
+        candidate.setCv(String.valueOf(updateCV));
         return ResponseEntity.ok(candidate);
 
     }

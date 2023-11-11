@@ -16,13 +16,13 @@ public class CandidateMapper {
         return candidate;
 
     }
-//    public Candidate updateCandidateToCandidate(UpdateCandidateDto updateCandidateDto){
-//        Candidate candidate = new Candidate();
-//        candidate.setName(updateCandidateDto.getName());
-//        candidate.setSurname(updateCandidateDto.getSurname());
-//        candidate.setPatronymic(updateCandidateDto.getPatronymic());
-//        candidate.setDescription(updateCandidateDto.getDescription());
-//        return candidate;
-//
-//    }
+    public Candidate updateCandidateToCandidate(UpdateCandidateDto updateCandidateDto){
+        Candidate candidate = new Candidate();
+        candidate.setName(updateCandidateDto.getName());
+        candidate.setSurname(updateCandidateDto.getSurname());
+        candidate.setPatronymic(updateCandidateDto.getPatronymic());
+        candidate.setDescription(updateCandidateDto.getDescription());
+        return candidate;
+
+    }
 }
