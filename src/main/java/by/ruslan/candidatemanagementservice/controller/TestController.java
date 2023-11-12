@@ -33,7 +33,7 @@ public class TestController {
 
     }
 
-    @PatchMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity.BodyBuilder updateTestById(
             @RequestBody UpdateDirectionDto updateTestDto,
             @PathVariable("id") long id) {

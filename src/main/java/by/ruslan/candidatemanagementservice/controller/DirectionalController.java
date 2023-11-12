@@ -32,7 +32,7 @@ public class DirectionalController {
 
     }
 
-    @PatchMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity.BodyBuilder updateDirectionById(
             @RequestBody UpdateDirectionDto updateDirectionDto,
             @PathVariable("id") long id) {
