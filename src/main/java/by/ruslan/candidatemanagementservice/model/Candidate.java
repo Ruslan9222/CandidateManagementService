@@ -23,9 +23,10 @@ public class Candidate {
     private String surname;
     private String patronymic;
     private String description;
-    private String cv;
     @Lob
-    private String photo;
+    private MultipartFile cv;
+    @Lob
+    private MultipartFile photo;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Direction> directions;
 

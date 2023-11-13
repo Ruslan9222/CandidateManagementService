@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Part;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -34,14 +35,18 @@ public class CandidateController {
 
     Logger logger = LoggerFactory.getLogger(CandidateController.class);
 
-    @PostMapping(consumes = "multipart/form-data")
+    @PostMapping( "/new")
     public ResponseEntity<Candidate> create(@RequestPart("candidate") CreateCandidateDto dto,
                                             @RequestPart("photo") MultipartFile photo,
                                             @RequestPart("cv") MultipartFile cv) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream("test.png");
+        fileOutputStream.write(photo.getBytes());
+        FileOutputStream fileOutputStreamCv = new FileOutputStream("test.png");
+        fileOutputStreamCv.write(cv.getBytes());
         Candidate candidateToCandidate = candidateMapper.createCandidateToCandidate(dto);
         Candidate candidate = candidateService.create(candidateToCandidate);
-        candidate.setPhoto(candidateService.convertPhoto((Part) photo));
-        candidate.setCv(String.valueOf(cv));
+//        candidate.setPhoto(candidateService.convertPhoto((Part) photo));
+//        candidate.setCv(String.valueOf(cv));
         return ResponseEntity.ok(candidate);
 
     }
@@ -51,8 +56,7 @@ public class CandidateController {
                                             @RequestPart("updateCV") MultipartFile updateCV) throws IOException {
         Candidate updateCandidateToCandidate = candidateMapper.updateCandidateToCandidate(dto);
         Candidate candidate = candidateService.updateCandidate(updateCandidateToCandidate);
-        candidate.setPhoto(candidateService.convertPhoto((Part) updatePhoto));
-        candidate.setCv(String.valueOf(updateCV));
+//
         return ResponseEntity.ok(candidate);
 
     }

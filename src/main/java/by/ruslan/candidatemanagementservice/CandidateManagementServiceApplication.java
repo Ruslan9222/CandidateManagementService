@@ -16,8 +16,8 @@ public class CandidateManagementServiceApplication {
     @Bean
     public MultipartConfigElement multipartConfigElement(){
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(DataSize.parse("512KB"));
-        factory.setMaxFileSize(DataSize.parse("512KB"));
+        factory.setMaxFileSize(DataSize.parse("5MB"));
+        factory.setMaxFileSize(DataSize.parse("5MB"));
         return factory.createMultipartConfig();
     }
 
