@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,31 +36,30 @@ public class CandidateController {
 
     Logger logger = LoggerFactory.getLogger(CandidateController.class);
 
-    @PostMapping( "/new")
+    @PostMapping("/new")
     public ResponseEntity<Candidate> create(@RequestPart("candidate") CreateCandidateDto dto,
-                                            @RequestPart("photo") MultipartFile photo,
-                                            @RequestPart("cv") MultipartFile cv) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream("test.png");
-        fileOutputStream.write(photo.getBytes());
-        FileOutputStream fileOutputStreamCv = new FileOutputStream("test.png");
-        fileOutputStreamCv.write(cv.getBytes());
-        Candidate candidateToCandidate = candidateMapper.createCandidateToCandidate(dto);
-        Candidate candidate = candidateService.create(candidateToCandidate);
-//        candidate.setPhoto(candidateService.convertPhoto((Part) photo));
-//        candidate.setCv(String.valueOf(cv));
-        return ResponseEntity.ok(candidate);
-
+                                         @RequestPart("cv") MultipartFile cv,
+                                         @RequestPart("photo") MultipartFile photo) throws IOException, InstantiationException, IllegalAccessException {
+        if (dto.getPhoto() != null){
+            Candidate createCandidateToCandidate = candidateMapper.createCandidateToCandidate(dto);
+            Candidate candidate = candidateService.updateCandidate(createCandidateToCandidate);
+            return ResponseEntity.ok(candidate);
+        } else  {
+            return ResponseEntity.badRequest().build();
+        }
     }
-    @PutMapping ("/updateCandidate")
-    public ResponseEntity<Candidate> updateCandidate(@RequestPart("updateCandidate") UpdateCandidateDto dto,
-                                            @RequestPart("updatePhoto") MultipartFile updatePhoto,
-                                            @RequestPart("updateCV") MultipartFile updateCV) throws IOException {
-        Candidate updateCandidateToCandidate = candidateMapper.updateCandidateToCandidate(dto);
-        Candidate candidate = candidateService.updateCandidate(updateCandidateToCandidate);
+
+//    @PutMapping("/updateCandidate")
+//    public ResponseEntity<Candidate> updateCandidate(@RequestPart("updateCandidate") UpdateCandidateDto dto,
+//                                                     @RequestPart("updatePhoto") MultipartFile updatePhoto,
+//                                                     @RequestPart("updateCV") MultipartFile updateCV) throws IOException {
 //
-        return ResponseEntity.ok(candidate);
-
-    }
+//
+//        Candidate updateCandidateToCandidate = candidateMapper.updateCandidateToCandidate(dto);
+//        Candidate candidate = candidateService.updateCandidate(updateCandidateToCandidate);
+//        return ResponseEntity.ok(candidate);
+//
+//    }
 
     @GetMapping("{name}/all/{pages}")
     public ResponseEntity<List<Candidate>> findAllByDirectionName(

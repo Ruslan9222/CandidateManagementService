@@ -2,6 +2,7 @@ package by.ruslan.candidatemanagementservice.repository;
 
 import by.ruslan.candidatemanagementservice.model.Direction;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,7 @@ public interface DirectionRepository extends JpaRepository<Direction, Long> {
     void updateDirectionByID(@Param(value = "id") long id, @Param(value = "description") String description);
 
 
-    List<Direction> findAllByDirectionName(String directionName, PageRequest pageable);
+    List<Direction> findAllByDirectionName(String directionName, Pageable pageable);
 
 
 }

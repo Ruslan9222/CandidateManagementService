@@ -24,10 +24,6 @@ public class CandidateService {
         return candidateRepository.save(candidate);
     }
 
-    public String convertPhoto(Part photo) throws IOException {
-        InputStream fileContent = photo.getInputStream();
-        return Base64.getEncoder().encodeToString(fileContent.readAllBytes());
-    }
 
     public Candidate updateCandidate(Candidate candidate) {
         return candidateRepository.save(candidate);

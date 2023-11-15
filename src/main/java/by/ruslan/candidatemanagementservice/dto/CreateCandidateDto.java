@@ -3,6 +3,9 @@ package by.ruslan.candidatemanagementservice.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.persistence.Lob;
 
 @Setter
 @Getter
@@ -12,5 +15,9 @@ public class CreateCandidateDto {
     private String surname;
     private String patronymic;
     private String description;
+    @Lob
+    private MultipartFile photo;
+    @Lob
+    private MultipartFile cv;
 
 }
