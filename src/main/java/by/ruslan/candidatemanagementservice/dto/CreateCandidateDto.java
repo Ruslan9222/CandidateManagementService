@@ -15,9 +15,9 @@ public class CreateCandidateDto {
     private String surname;
     private String patronymic;
     private String description;
-    @Lob
+
     private MultipartFile photo;
-    @Lob
+
     private MultipartFile cv;
 
 }
